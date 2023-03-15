@@ -1,0 +1,61 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: #000;
+}
+.container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	gap: 40px;
+	/* para agrgar un reflejo : [above, below, left, right], despues de cuantos pixeles, ... */
+	-webkit-box-reflect: below 2px linear-gradient(transparent, #0005);
+}
+.container .box {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	/* #00f376 10%: Este es el primer color del degradado, que es un verde azulado (#00f376) y se establece en el 10% del degradado.
+    transparent 10%: El segundo argumento es transparent, lo que significa que no hay color. Se utiliza para crear un espacio en blanco en el degradado. Se establece en el 10% del degradado para que haya un espacio en blanco junto al primer color.
+    transparent 50%: Se utiliza otro color transparente para crear otro espacio en blanco en el degradado, y se establece en el 50% para que esté justo en el medio del degradado.
+    #00f376 50%: Este es el segundo color del degradado, que es el mismo verde azulado que el primer color y se establece en el 50% del degradado.
+    #00f376 60%: El tercer color es el mismo verde azulado que el primer y segundo color, y se establece en el 60% del degradado.
+    transparent 60%: El quinto color es transparente y se utiliza para crear otro espacio en blanco en el degradado, y se establece en el 60% del degradado.
+    transparent 100%: El sexto y último color es transparente, y se establece en el 100% del degradado para asegurarse de que el fondo degradado no continúe más allá de la caja. */
+	background: linear-gradient(
+		45deg,
+		#00f376 10%,
+		transparent 10%,
+		transparent 50%,
+		#00f376 50%,
+		#00f376 60%,
+		transparent 60%,
+		transparent 100%
+	);
+	background-size: 40px 40px;
+	/* rota la caja segun el valor de la variable css */
+	transform: rotate(calc(var(--i) * 90deg));
+	/* cambia el matiz de la caja segun la variable css */
+	filter: hue-rotate(calc(var(--i) * 90deg));
+	/* establece una animación llamada "animate" con duración de 0.5 seg, una función de temporización lineal y se repite infinitamente */
+	animation: animate 0.5s linear infinite;
+}
+/* cambia la posición del fondo de la caja del 0% al 100% para crear un efecto de movimiento */
+@keyframes animate {
+	0% {
+		background-position: 0;
+	}
+	100% {
+		/* el bg-size debe de ser igual al bg-position del 100% para que el mov sea fluido */
+		background-position: 40px;
+	}
+}
